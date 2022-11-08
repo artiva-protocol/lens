@@ -15,7 +15,7 @@ const GlobalProvider = ({
   const { parentRef } = useColorScheme({ platform });
   return (
     <div id="theme">
-      <div ref={parentRef as any}>
+      <div style={{ fontFamily: "Cormorant" }} ref={parentRef as any}>
         <ThemeContext.Provider value={ctx}>{children}</ThemeContext.Provider>
       </div>
     </div>

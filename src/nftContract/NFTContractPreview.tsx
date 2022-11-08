@@ -20,7 +20,7 @@ const NFTContractPreview = ({ contract }: { contract: NFTContractObject }) => {
   const { data: nft } = useNFT(identifier);
 
   return (
-    <div className="h-[60vh] sm:h-[80vh] relative">
+    <div className="relative">
       <div className="absolute bg-black/[.4] top-5 right-8 z-30 text-white px-4 py-1 text-xs rounded-md">
         {collection?.symbol}
       </div>
@@ -32,12 +32,7 @@ const NFTContractPreview = ({ contract }: { contract: NFTContractObject }) => {
         <div className="absolute h-full w-full bg-black/[.4] z-20 rounded-md"></div>
       )}
 
-      {nft && (
-        <NFTRenderer
-          className="absolute h-full object-cover rounded-md"
-          nft={nft as NFTObject}
-        />
-      )}
+      {nft && <NFTRenderer className="w-full" nft={nft as NFTObject} />}
     </div>
   );
 };

@@ -128,7 +128,7 @@ const Home = ({ ctx, platform }: HomeProps) => {
                 <h2
                   className={`${
                     showingCover ? "text-white" : "text-black dark:text-white"
-                  } z-20 text-md sm:text-2xl font-extralight mt-6 sm:px-24`}
+                  } z-20 text-md sm:text-xl font-light mt-6 w-full sm:w-[50vw]`}
                 >
                   {platform?.description}
                 </h2>
@@ -145,9 +145,11 @@ const Home = ({ ctx, platform }: HomeProps) => {
             )}
           </Fragment>
         </div>
-        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mx-6 mt-6">
+        <div className="columns-1 md:columns-2 gap-4 space-y-4 p-8">
           {posts?.map((x: any) => (
-            <PostPreview post={x} />
+            <div className="h-min w-full">
+              <PostPreview post={x} />
+            </div>
           ))}
         </div>
         <div ref={loaderElementRef} />
