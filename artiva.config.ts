@@ -9,7 +9,7 @@ export type CustomPropertiesType = {
 };
 
 const config: ThemeConfig = {
-  name: "baseline",
+  name: "lens",
   version: "1.0.0",
   engines: {
     artiva: "0.1.0",
