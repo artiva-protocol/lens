@@ -6,6 +6,7 @@ export type CustomPropertiesType = {
   header_style: "Center aligned" | "Left aligned" | "Hidden";
   connect_wallet_text: string;
   color_scheme: "Light" | "Dark" | "Auto";
+  font: "Basic" | "Raleway" | "Jura" | "Bodoni Moda" | "Cormorant";
 };
 
 const config: ThemeConfig = {
@@ -23,6 +24,11 @@ const config: ThemeConfig = {
     connect_wallet_text: {
       type: "text",
       default: "Connect Wallet",
+    },
+    font: {
+      type: "select",
+      options: ["Basic", "Raleway", "Jura", "Bodoni Moda", "Cormorant"],
+      default: "Raleway",
     },
     show_platform_cover: {
       type: "boolean",

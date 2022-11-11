@@ -75,7 +75,17 @@ module.exports = {
           version: "0",
           requiredVersion: false,
         },
+        "next/head": {
+          singleton: true,
+          version: "0",
+          requiredVersion: false,
+        },
         "@heroicons/react": {
+          singleton: true,
+          version: "0",
+          requiredVersion: false,
+        },
+        "unstated-next": {
           singleton: true,
           version: "0",
           requiredVersion: false,

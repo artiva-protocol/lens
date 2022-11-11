@@ -1,7 +1,8 @@
 import { ArtivaContextType, Platform } from "@artiva/shared";
-import React from "react";
+import React, { useRef } from "react";
 import useColorScheme from "../hooks/useColorScheme";
 import ThemeContext from "./ThemeContext";
+import useCustomFont from "../hooks/useCustomFont";
 
 const GlobalProvider = ({
   ctx,
@@ -12,10 +13,13 @@ const GlobalProvider = ({
   platform: Platform;
   children: React.ReactNode;
 }) => {
-  const { parentRef } = useColorScheme({ platform });
+  const parentRef = useRef<HTMLDivElement>(null);
+  useColorScheme({ platform, parentElement: parentRef });
+  useCustomFont({ platform, parentElement: parentRef });
+
   return (
     <div id="theme">
-      <div style={{ fontFamily: "Cormorant" }} ref={parentRef as any}>
+      <div ref={parentRef as any}>
         <ThemeContext.Provider value={ctx}>{children}</ThemeContext.Provider>
       </div>
     </div>
