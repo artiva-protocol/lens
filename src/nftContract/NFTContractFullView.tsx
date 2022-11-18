@@ -30,17 +30,19 @@ const NFTContractFullView = ({ contract }: { contract: NFTContractObject }) => {
   return (
     <div className="mt-10">
       <Header contract={contract} />
-      <div className="grid gap-6 grid-cols-1 sm:grid-cols-3 mx-6 mt-6">
+      <div className="columns-1 md:columns-2 2xl:columns-3 gap-4 space-y-4 p-8">
         {nfts?.map((x: any) => (
-          <NFTPreviewWrapper
-            identifier={{
-              contractAddress: collection?.address,
-              tokenId: x.token.tokenId,
-              chain:
-                (collection.networkInfo?.network as ChainIdentifier) ||
-                "ETHEREUM",
-            }}
-          />
+          <div className="h-min w-full">
+            <NFTPreviewWrapper
+              identifier={{
+                contractAddress: collection?.address,
+                tokenId: x.token.tokenId,
+                chain:
+                  (collection.networkInfo?.network as ChainIdentifier) ||
+                  "ETHEREUM",
+              }}
+            />
+          </div>
         ))}
       </div>
       <div ref={loaderElementRef} />
