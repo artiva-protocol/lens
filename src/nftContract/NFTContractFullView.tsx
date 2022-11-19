@@ -76,10 +76,10 @@ const Header = ({ contract }: { contract: NFTContractObject }) => {
   return (
     <Fragment>
       <div className="ml-10">
-        <div className="text-black text-xs rounded-md">
+        <div className="text-black dark:text-white text-xs rounded-md">
           {collection?.symbol}
         </div>
-        <div className="text-black text-left mt-4">
+        <div className="text-black dark:text-white text-left mt-4">
           <div className="text-4xl font-semibold">{collection?.name}</div>
           <div className="flex">
             {edition && (

@@ -18,19 +18,22 @@ const NFTMarketView = ({ nft }: { nft?: NFTObject }) => {
   const auction = useFindAuction(secondary);
   const ask = useFindAsk(secondary);
 
-  const border = "flex flex-col border border-gray-300 rounded-md p-6";
+  const border =
+    "flex flex-col border border-gray-300 dark:border-gray-700 rounded-md p-6";
 
   const askView = () => {
     if (!ask?.amount) return <Fragment />;
     return (
       <div className={border}>
-        <div className="text-gray-500 text-lg font-light">Buy Now</div>
+        <div className="text-gray-500 dark:text-gray-400 text-lg font-light">
+          Buy Now
+        </div>
         <div className="flex flex-col">
           <PricingString
             pricing={ask.amount}
             showUSD={false}
             className={{
-              amount: "text-black text-3xl",
+              amount: "text-black dark:text-white text-3xl",
               usd: "text-gray-500 text-sm font-light",
             }}
           />
@@ -38,7 +41,7 @@ const NFTMarketView = ({ nft }: { nft?: NFTObject }) => {
         <Link
           href={`/assets/ETHEREUM/${nft?.nft?.contract.address}/${nft?.nft?.tokenId}/buy`}
         >
-          <a className="bg-black mt-4 text-white flex items-center justify-around h-12 rounded-md w-full">
+          <a className="bg-black dark:bg-white mt-4 text-white dark:text-black flex items-center justify-around h-12 rounded-md w-full">
             Buy Now
           </a>
         </Link>

@@ -16,6 +16,7 @@ const useColorScheme = ({
   useEffect(() => {
     if (!parentElement.current) return;
     const isDark =
+      true ||
       custom.color_scheme === "Dark" ||
       (custom.color_scheme === "Auto" &&
         window.matchMedia("(prefers-color-scheme: dark)").matches);
@@ -23,9 +24,7 @@ const useColorScheme = ({
     if (isDark) parentElement.current.classList.add("dark");
     else parentElement.current.classList.remove("dark");
 
-    console.log("router", asPath);
-
-    if (isDark && asPath === "/") document.body.style.backgroundColor = "black";
+    if (isDark) document.body.style.backgroundColor = "black";
     else document.body.style.backgroundColor = "white";
   }, [custom.color_scheme, parentElement, asPath]);
 };

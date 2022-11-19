@@ -4,6 +4,8 @@ import { HomeProps } from "@artiva/shared";
 import GlobalProvider from "../context/GlobalProvider";
 import Footer from "../components/Footer";
 import useCustomProperties from "../hooks/useCustomProperties";
+import { Bars3Icon } from "@heroicons/react/24/solid";
+import MobileNavigation from "../components/MobileNavigation";
 const PostPreview = dynamic(() => import("../post/PostPreview"), {
   ssr: false,
 });
@@ -12,6 +14,7 @@ const Home = ({ ctx, platform }: HomeProps) => {
   const { Nav, ConnectButton, CustomConnectButton, Image } = ctx.components;
   const { useInfinitePosts } = ctx.hooks;
   const custom = useCustomProperties({ platform });
+  const [navOpen, setNavOpen] = useState(false);
 
   const headerStyles = () => {
     switch (custom.header_style) {
@@ -36,6 +39,12 @@ const Home = ({ ctx, platform }: HomeProps) => {
 
   return (
     <GlobalProvider ctx={ctx} platform={platform}>
+      {navOpen && (
+        <MobileNavigation
+          navigation={platform.navigation}
+          onClose={() => setNavOpen(false)}
+        />
+      )}
       <div className="pb-20 bg-white dark:bg-black">
         <div
           className={`relative ${
@@ -67,18 +76,22 @@ const Home = ({ ctx, platform }: HomeProps) => {
                   )}
                 </Fragment>
               )}
-              {platform?.navigation && (
-                <Nav
-                  className={`${
-                    showingCover
-                      ? "text-gray-800"
-                      : "text-gray-800 dark:text-white"
-                  } text-lg mr-10`}
-                  navigation={platform?.navigation}
-                />
-              )}
+              <div className="hidden sm:block">
+                {platform?.navigation && (
+                  <Nav
+                    className={`${
+                      showingCover
+                        ? "text-gray-800"
+                        : "text-gray-800 dark:text-white"
+                    } text-lg mr-10`}
+                    navigation={platform?.navigation.filter(
+                      (x) => !x.secondary
+                    )}
+                  />
+                )}
+              </div>
             </div>
-            <div className="text-center">
+            <div className="text-center hidden sm:block">
               {ConnectButton && (
                 <ConnectButton>
                   {(props: any) => (
@@ -96,6 +109,12 @@ const Home = ({ ctx, platform }: HomeProps) => {
                 </ConnectButton>
               )}
             </div>
+            <button
+              onClick={() => setNavOpen(true)}
+              className="sm:hidden focus:outline-none"
+            >
+              <Bars3Icon className="h-8 text-gray-700 dark:text-gray-300" />
+            </button>
           </div>
 
           <Fragment>
@@ -167,5 +186,7 @@ const Home = ({ ctx, platform }: HomeProps) => {
     </GlobalProvider>
   );
 };
+
+const Header = () => {};
 
 export default Home;
